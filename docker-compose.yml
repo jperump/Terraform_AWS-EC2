@@ -1,0 +1,26 @@
+version: "2"
+services:
+  web:
+   # specify an image to pull as web app.
+   image: DEFAULT
+   ports:
+      - "80:3000"
+   depends_on:
+      - "mongodb"
+   links:
+      - "mongodb"
+   container_name: webapp
+   volumes:
+      #sample data volume mapping between host and container.
+      - ./data/images/icons:/srv/app/public/img/icons
+  mongodb:
+   image: mongo
+   ports:
+      - "27017:27017"
+   container_name: mongodb
+   volumes:
+      #sample data volume mapping between host and container.
+      - ./data/database:/data/db
+volumes:
+   images: 
+   database:
